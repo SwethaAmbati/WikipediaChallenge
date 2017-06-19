@@ -169,7 +169,7 @@ public class DetailImageFragment extends Fragment {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.home:
+            case android.R.id.home:
                 // app icon in action bar clicked; goto parent activity.
                 getActivity().finish();
                 Intent i = new Intent(getActivity(),MainActivity.class);
@@ -180,10 +180,10 @@ public class DetailImageFragment extends Fragment {
 
                 detail_image.buildDrawingCache();
                 bmp = detail_image.getDrawingCache();
-
                 try {
 
                     if (bmp == null) {
+                        Toast.makeText(getActivity(), "Try Again", Toast.LENGTH_SHORT).show();
                     }
                     final File dir = new File(Environment.getExternalStorageDirectory(),"image");
 
@@ -195,10 +195,7 @@ public class DetailImageFragment extends Fragment {
                     if (img.exists()) {
                         img.delete();
                     }
-                    final OutputStream outStream = new FileOutputStream(img);
-                    bmp.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
-                    outStream.flush();
-                    outStream.close();
+
 
                     Intent shareIntent = new Intent();
                     shareIntent.setAction(Intent.ACTION_SEND);
@@ -207,7 +204,7 @@ public class DetailImageFragment extends Fragment {
                     shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(img));
                     shareIntent.setType("image/*");
                     shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    startActivity(Intent.createChooser(shareIntent, getResources().getString(R.string.share)));
+                    getActivity().startActivity(Intent.createChooser(shareIntent, getResources().getString(R.string.share)));
                 }
                 catch(Exception e){
 
@@ -249,6 +246,7 @@ public class DetailImageFragment extends Fragment {
 
                     final DownloadManager dm = (DownloadManager) getContext().getSystemService(Context.DOWNLOAD_SERVICE);
                     dm.enqueue(request);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.downloading_image), Toast.LENGTH_SHORT).show();
                 }
 
 
