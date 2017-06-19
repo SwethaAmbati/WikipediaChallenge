@@ -221,7 +221,7 @@ public class DetailImageFragment extends Fragment {
 
                 request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
                 request.setTitle(title);
-                request.setDescription(getResources().getString(R.string.downloading_image));
+                request.setDescription("Downloading image");
 
 
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
@@ -237,7 +237,7 @@ public class DetailImageFragment extends Fragment {
                 }
 
                 request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS +
-                        File.separator + "image", "name" + "." + suffix);
+                        File.separator + "image_test", "name" + "." + suffix);
                 request.allowScanningByMediaScanner();
 
 
@@ -246,7 +246,6 @@ public class DetailImageFragment extends Fragment {
 
                     final DownloadManager dm = (DownloadManager) getContext().getSystemService(Context.DOWNLOAD_SERVICE);
                     dm.enqueue(request);
-                    Toast.makeText(getActivity(), getResources().getString(R.string.downloading_image), Toast.LENGTH_SHORT).show();
                 }
 
 
