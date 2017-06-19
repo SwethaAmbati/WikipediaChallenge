@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Wikipedia</string>
+    <string name="search">Search..</string>
+    <string name="base_url">https://en.wikipedia.org/</string>
+
+    <string name="permission">Permission Necessary</string>
+    <string name="permission_message">Allow wikipedia to access photos, media and files on your device to download image</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="copylink">Copy link to</string>
+    <string name="downloading_image">Downloading image</string>
+    <string name="share">Share</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

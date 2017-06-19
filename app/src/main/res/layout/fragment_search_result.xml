@@ -1,0 +1,46 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.wikipedia.activity.search.SearchResultFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/wiki_llayout">
+
+        <ImageView
+            android:id="@+id/wiki_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wiki_logo"
+            />
+
+        <TextView
+            android:id="@+id/wiki_titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Wikipedia"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/wiki_subText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="The free encyclopedia"
+            android:gravity="center"
+            android:padding="8dp" />
+
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--    android:layout_marginBottom="56dp" -->
+    </android.support.v7.widget.RecyclerView>
+
+</FrameLayout>
