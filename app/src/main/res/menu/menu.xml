@@ -21,6 +21,11 @@
         android:orderInCategory="300"
         app:showAsAction="always"/>
 
+    <item android:id="@+id/print"
+        android:title="print"
+        android:icon="@drawable/printer"
+        app:showAsAction="always"/>
+
 
 
 </menu>

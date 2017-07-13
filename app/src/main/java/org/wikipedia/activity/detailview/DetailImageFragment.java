@@ -8,7 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -16,7 +18,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.print.PrintHelper;
 import android.support.v7.app.ActionBar;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -42,7 +46,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -176,6 +183,11 @@ public class DetailImageFragment extends Fragment {
                 startActivity(i);
                 return true;
 
+            case R.id.print:
+                doBitmapPrint();
+                return true;
+
+
             case R.id.share:
 
                 detail_image.buildDrawingCache();
@@ -263,6 +275,36 @@ public class DetailImageFragment extends Fragment {
 
     }
 
+    private void doBitmapPrint() {
+        new PrintAsync().execute();
+
+
+
+
+    }
+
+    private class PrintAsync extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            PrintHelper bitmapPrinter = new PrintHelper(getActivity());
+            bitmapPrinter.setScaleMode(PrintHelper.SCALE_MODE_FIT);
+            try{
+                URL url = new URL(image);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap b = BitmapFactory.decodeStream(input);
+                bitmapPrinter.printBitmap(title,b);
+            }catch(Exception e){
+                e.getMessage();
+
+            }
+            return null;
+        }
+
+    }
 
     private Uri getLocalBitmapUri(Bitmap bmp) {
         Uri bmpUri = null;
@@ -317,4 +359,6 @@ public class DetailImageFragment extends Fragment {
             return true;
         }
     }
-}
+
+
+    }

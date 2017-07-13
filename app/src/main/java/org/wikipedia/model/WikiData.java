@@ -6,8 +6,8 @@ package org.wikipedia.model;
 
 public class WikiData {
 
-    public String title;
-    public String imgThumbnailUrl;
+    private String title;
+    private String imgThumbnailUrl;
 
     public String getTitle() {
         return title;

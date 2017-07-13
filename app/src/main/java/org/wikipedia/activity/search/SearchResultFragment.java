@@ -182,11 +182,11 @@ public class SearchResultFragment extends Fragment implements  SearchView.OnQuer
                             WikiData data = new WikiData();
                             if (keyvalue instanceof JSONObject) {
                                 String title = ((JSONObject) keyvalue).getString(TITLE);
-                                data.title = title;
+                                data.setTitle(title) ;
                                 if (((JSONObject) keyvalue).has(THUMBNAIL)) {
                                     Object img = ((JSONObject) keyvalue).get(THUMBNAIL);
                                     img_url = ((JSONObject) img).getString(SOURCE);
-                                    data.imgThumbnailUrl = img_url;
+                                    data.setImgThumbnailUrl(img_url);
                                 }
 
                                 wikiDataList.add(data);
